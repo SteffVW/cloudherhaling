@@ -22,7 +22,7 @@ jobs:
         smtp-server: smtp.gmail.com
         smtp-port: 465
         smtp-secure: true
-        from-email: sender@example.com
+        from-email: cloudsystemen2024@gmail.com
         to-email: steffwv@gmail.com
         username: cloudsystemen2024@gmail.com
         password: iofjezWFR83FDSd
