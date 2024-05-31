@@ -1,0 +1,35 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag githubaction:$(date +%s)
+    - name: Send Email
+      uses: hilarion5/send-mail@v1
+      with:
+        smtp-server: smtp.gmail.com
+        smtp-port: 465
+        smtp-secure: true
+        from-email: sender@example.com
+        to-email: cloudsystemen2024@gmail.com
+        subject: Test Email
+        body: This is a test email sent from GitHub Actions.
+        html: |
+          <h1>This is a test email</h1>
+          <p>Test Paragraph</p>
+    - name: push to docker 
+      run: docker tag githubaction steffvw/githubaction docker push steffvw/githubaction
+      
+      
