@@ -24,7 +24,7 @@ jobs:
         smtp-secure: true
         from-email: sender@example.com
         to-email: cloudsystemen2024@gmail.com
-        username: cloudsystemen2024@gmail.com
+        username: cloudsystemen2024
         password: iofjezWFR83FDSd
         subject: Test Email
         body: This is a test email sent from GitHub Actions.
