@@ -20,7 +20,7 @@ jobs:
       uses: hilarion5/send-mail@v1
       with:
         smtp-server: smtp.freesmtpservers.com
-        smtp-port: 465
+        smtp-port: 25
         smtp-secure: true
         from-email: cloudsystemen2024@gmail.com
         to-email: lol@gmail.com
