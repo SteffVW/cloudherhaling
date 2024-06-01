@@ -21,8 +21,8 @@ jobs:
       with:
         smtp-server: smtp.freesmtpservers.com
         smtp-port: 25
-        smtp-secure: true
-        from-email: cloudsystemen2024@gmail.com
+        smtp-secure: false
+        from-email: sender@example.com
         to-email: lol@gmail.com
         subject: Test Email
         body: This is a test email sent from GitHub Actions.
