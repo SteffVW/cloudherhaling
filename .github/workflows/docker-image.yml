@@ -1,0 +1,42 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag herhalingactions:$(date +%s)
+    - name: Send Email
+      uses: hilarion5/send-mail@v1
+      with:
+        smtp-server: smtp.freesmtpservers.com
+        smtp-port: 25
+        smtp-secure: false
+        from-email: sender@example.com
+        to-email: recipient1@example.com
+        subject: Test Email
+        body: This is a test email sent from GitHub Actions.
+        html: |
+          <h1>This is a test email</h1>
+          <p>Test Paragraph</p>
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+    - name: push to docker
+      uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0
+      with:
+        push: true
+        tags: steffvw/herhalingactions
+    
